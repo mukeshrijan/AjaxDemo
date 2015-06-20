@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX</title>
+</head>
+<body>
+	<form action="response.php" method="post" id="form_id">
+		<input type="text" name="name" id="name" placeholder="Enter Name" />
+		<input type="submit" name="submit" id="submit" value="Submit">
+	</form>
+	<div>Display: <span id="name_display">boy<span></div>
+
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+
+	$("#submit").on("click", function(event) {
+		event.preventDefault();
+
+		$.ajax({
+			type: "POST",
+			url: $("#form_id").attr("action"),
+			data: {name: $("#name").val()},
+			success: function(resp) {
+				$("#name_display").html(resp);
+			}
+		});
+	});
+
+	</script>
+
+</body>
+
+
+</html>
